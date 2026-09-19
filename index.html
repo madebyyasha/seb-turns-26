@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#06152d" />
+  <meta name="description" content="A very serious rowing assignment for Seb's 26th birthday." />
+  <title>Seb turns 26</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306152d'/%3E%3Cpath d='M10 40h44L46 49H18z' fill='%23f36c21'/%3E%3Cpath d='M15 30l34 18M49 30L15 48' stroke='%23f5ddb0' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root { --navy:#06152d; --ink:#0d2446; --orange:#ff6a22; --cream:#fff4d6; --gold:#ffd56a; }
+    * { box-sizing: border-box; }
+    html, body { width:100%; height:100%; margin:0; overflow:hidden; }
+    body { font-family: Georgia, 'Times New Roman', serif; background:var(--navy); color:var(--cream); }
+    button { font:inherit; }
+    .scene { position:absolute; inset:0; display:grid; place-items:center; transition:opacity .7s ease, transform .7s ease; }
+    .hidden { opacity:0; pointer-events:none; transform:scale(1.035); }
+
+    #race { isolation:isolate; background:linear-gradient(#04101f 0 54%, #0e3556 54% 70%, #082743 70%); }
+    .moon { position:absolute; top:7vh; right:10vw; width:min(13vw,100px); aspect-ratio:1; border-radius:50%; background:#fff1c2; box-shadow:0 0 50px #fff1c277; }
+    .stars { position:absolute; inset:0 0 46%; background-image:radial-gradient(circle,#fff 0 1px,transparent 1.7px); background-size:77px 69px; opacity:.62; }
+    .shore { position:absolute; left:0; right:0; top:49%; height:8%; background:linear-gradient(165deg,transparent 0 43%,#10253a 44% 100%); opacity:.9; }
+    .water { position:absolute; inset:54% 0 0; overflow:hidden; background:repeating-linear-gradient(0deg,transparent 0 18px,#e5f3ff12 19px 21px); }
+    .water::after { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 0,#f8df9555,transparent 28%); animation:shimmer 4s ease-in-out infinite alternate; }
+    @keyframes shimmer { to { transform:translateX(-4%); opacity:.55; } }
+
+    .copy { z-index:4; position:absolute; top:8vh; left:50%; width:min(90vw,720px); transform:translateX(-50%); text-align:center; }
+    .eyebrow { margin:0 0 .5rem; color:var(--gold); font:700 .78rem/1.2 system-ui,sans-serif; letter-spacing:.22em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(2.2rem,7vw,5.5rem); line-height:.92; letter-spacing:-.045em; text-wrap:balance; }
+    .instruction { margin:.8rem 0 0; font:600 clamp(.95rem,2.5vw,1.1rem)/1.4 system-ui,sans-serif; color:#dbe9f5; }
+
+    .course { position:absolute; z-index:3; left:0; right:0; top:49%; bottom:6%; }
+    .boat { position:absolute; left:-43vw; top:17%; width:clamp(300px,48vw,760px); filter:drop-shadow(0 16px 12px #0008); transition:left .32s cubic-bezier(.2,.8,.3,1), transform .2s ease; user-select:none; -webkit-user-drag:none; }
+    .boat.stroke { transform:rotate(-1.4deg) translateY(-7px); }
+    .finish { position:absolute; right:5vw; top:7%; bottom:4%; width:4px; background:repeating-linear-gradient(#fff 0 14px,var(--orange) 14px 28px); box-shadow:0 0 18px #fff7; }
+    .finish::before { content:"FINISH"; position:absolute; top:-2.3rem; left:50%; transform:translateX(-50%); font:800 .75rem system-ui,sans-serif; letter-spacing:.16em; }
+    .controls { position:absolute; z-index:6; bottom:5vh; left:50%; transform:translateX(-50%); display:grid; justify-items:center; gap:.7rem; }
+    #row { min-width:170px; min-height:58px; border:2px solid var(--cream); border-radius:999px; color:var(--navy); background:var(--cream); box-shadow:0 8px 0 #d9b96e,0 14px 28px #0006; font:900 1rem system-ui,sans-serif; letter-spacing:.16em; cursor:pointer; touch-action:manipulation; transition:transform .08s,box-shadow .08s; }
+    #row:active { transform:translateY(6px); box-shadow:0 2px 0 #d9b96e,0 8px 18px #0006; }
+    .meter { width:min(70vw,320px); height:7px; border-radius:8px; background:#ffffff28; overflow:hidden; }
+    .meter span { display:block; width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--orange),var(--gold)); transition:width .25s ease; }
+    .aside { min-height:1.2rem; font:700 .78rem system-ui,sans-serif; color:var(--gold); letter-spacing:.04em; }
+
+    #finale { background:radial-gradient(circle at 50% 45%,#203f71 0,#08172f 45%,#030b18 100%); text-align:center; }
+    .final-wrap { position:relative; z-index:3; padding:1rem; }
+    .cake { font-size:clamp(6rem,23vw,12rem); line-height:1; filter:drop-shadow(0 14px 22px #0008); transform:translateY(24px) scale(.7); opacity:0; }
+    .finale-live .cake { animation:cakeIn .75s cubic-bezier(.2,1.4,.4,1) forwards; }
+    @keyframes cakeIn { to { transform:none; opacity:1; } }
+    .final-title { margin:.35rem 0 0; font-size:clamp(3.2rem,10vw,7.2rem); line-height:.9; letter-spacing:-.055em; opacity:0; transform:translateY(16px); text-wrap:balance; }
+    .finale-live .final-title { animation:reveal .7s .35s ease forwards; }
+    .final-name { color:var(--orange); }
+    @keyframes reveal { to { opacity:1; transform:none; } }
+    .sub { margin:1rem 0 0; font:700 .85rem system-ui,sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); opacity:0; }
+    .finale-live .sub { animation:reveal .6s 1.2s ease forwards; }
+    .confetti { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .confetti i { position:absolute; top:-12vh; width:9px; height:18px; background:var(--c); transform:rotate(var(--r)); animation:fall var(--d) var(--delay) linear infinite; }
+    @keyframes fall { to { transform:translate3d(var(--drift),115vh,0) rotate(760deg); } }
+    .mute { position:absolute; right:1rem; bottom:1rem; z-index:8; border:1px solid #ffffff55; border-radius:999px; background:#06152dbb; color:#fff; padding:.65rem .85rem; font:700 .8rem system-ui,sans-serif; cursor:pointer; }
+    @media (max-width:640px) {
+      .copy { top:7vh; }
+      .course { top:50%; bottom:10%; }
+      .boat { width:390px; left:-330px; top:24%; }
+      .finish { right:4vw; }
+      .controls { bottom:4vh; }
+      .cake { font-size:8rem; }
+      .final-title { font-size:clamp(3rem,15vw,5rem); text-shadow:0 3px 18px #030b18,0 0 8px #030b18; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="race" class="scene" aria-label="Row Seb to his birthday">
+      <div class="stars"></div><div class="moon"></div><div class="shore"></div><div class="water"></div>
+      <div class="copy">
+        <p class="eyebrow">24 September · Official assignment</p>
+        <h1>Row Seb to 26.</h1>
+        <p class="instruction">Eight strokes. Surely even after a borrel.</p>
+      </div>
+      <div class="course">
+        <img id="boat" class="boat" src="assets/seb-rowing-v2.png" alt="An illustrated Seb racing across the canal" />
+        <div class="finish" aria-hidden="true"></div>
+      </div>
+      <div class="controls">
+        <button id="row" type="button" aria-label="Row one stroke">ROW</button>
+        <div class="meter" aria-hidden="true"><span id="progress"></span></div>
+        <div id="aside" class="aside" aria-live="polite">0 / 8</div>
+      </div>
+    </section>
+
+    <section id="finale" class="scene hidden" aria-label="Happy Birthday Seb">
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
+      <div class="final-wrap">
+        <div class="cake" aria-hidden="true">🎂</div>
+        <h2 class="final-title">Happy Birthday,<br><span class="final-name">Seb.</span></h2>
+        <p class="sub">26 · still afloat</p>
+      </div>
+      <button id="mute" class="mute" type="button" aria-pressed="false">Sound on</button>
+    </section>
+  </main>
+
+  <script>
+    const total = 8;
+    let strokes = 0;
+    let audioCtx;
+    let musicNodes = [];
+    const boat = document.querySelector('#boat');
+    const rowButton = document.querySelector('#row');
+    const progress = document.querySelector('#progress');
+    const aside = document.querySelector('#aside');
+    const race = document.querySelector('#race');
+    const finale = document.querySelector('#finale');
+    const mute = document.querySelector('#mute');
+    const remarks = ['1 / 8 · promising', '2 / 8 · suspiciously athletic', '3 / 8 · borrel pace', '4 / 8 · halfway, somehow', '5 / 8 · very stuko', '6 / 8 · lungs negotiable', '7 / 8 · dignity gone', '8 / 8 · 26 achieved'];
+
+    function ensureAudio() {
+      audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+    function splash() {
+      const ctx = ensureAudio();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle'; osc.frequency.setValueAtTime(180, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + .12);
+      gain.gain.setValueAtTime(.09, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .16);
+      osc.connect(gain).connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + .17);
+    }
+    function note(freq, start, duration, volume=.1, type='sine') {
+      const ctx = ensureAudio();
+      const osc = ctx.createOscillator(); const gain = ctx.createGain();
+      osc.type = type; osc.frequency.value = freq;
+      gain.gain.setValueAtTime(.0001, start); gain.gain.exponentialRampToValueAtTime(volume, start+.025); gain.gain.exponentialRampToValueAtTime(.0001, start+duration);
+      osc.connect(gain).connect(ctx.destination); osc.start(start); osc.stop(start+duration+.03); musicNodes.push(osc);
+    }
+    function playHappyBirthday() {
+      const ctx = ensureAudio(); const start = ctx.currentTime + .12; const beat = .29;
+      const G=392,A=440,C=523.25,B=493.88,D=587.33,E=659.25,F=698.46,G2=783.99;
+      const melody = [[G,.5],[G,.5],[A,1],[G,1],[C,1],[B,2],[G,.5],[G,.5],[A,1],[G,1],[D,1],[C,2],[G,.5],[G,.5],[G2,1],[E,1],[C,1],[B,1],[A,2],[F,.5],[F,.5],[E,1],[C,1],[D,1],[C,2]];
+      let t=start;
+      melody.forEach(([f,b],i)=>{ const dur=b*beat*.92; note(f,t,dur,.105,'triangle'); note(f/2,t,dur,.035,'sine'); if(i%3===0) note(f*2,t,dur*.65,.022,'sine'); t+=b*beat; });
+    }
+    function launchConfetti() {
+      const colors=['#ff6a22','#ffd56a','#fff4d6','#2ca9e1','#ec4e82'];
+      const box=document.querySelector('#confetti');
+      for(let i=0;i<80;i++){
+        const p=document.createElement('i');
+        p.style.left=Math.random()*100+'%'; p.style.setProperty('--c',colors[i%colors.length]); p.style.setProperty('--r',Math.random()*180+'deg');
+        p.style.setProperty('--d',(2.8+Math.random()*2.8)+'s'); p.style.setProperty('--delay',(-Math.random()*3)+'s'); p.style.setProperty('--drift',(-80+Math.random()*160)+'px');
+        box.appendChild(p);
+      }
+    }
+    function finish() {
+      rowButton.disabled=true;
+      setTimeout(()=>{
+        race.classList.add('hidden'); finale.classList.remove('hidden'); finale.classList.add('finale-live');
+        launchConfetti(); playHappyBirthday();
+      },550);
+    }
+    function row() {
+      if(strokes>=total) return;
+      strokes++; splash();
+      boat.classList.add('stroke'); setTimeout(()=>boat.classList.remove('stroke'),180);
+      const pct=strokes/total*100;
+      progress.style.width=pct+'%'; aside.textContent=remarks[strokes-1];
+      const mobile=matchMedia('(max-width:640px)').matches;
+      const start=mobile?-330:-43; const unit=mobile?'px':'vw'; const end=mobile?innerWidth-355:53;
+      boat.style.left=(start+(end-start)*(strokes/total))+unit;
+      if(strokes===total) finish();
+    }
+    rowButton.addEventListener('click',row);
+    document.addEventListener('keydown',e=>{ if((e.code==='Space'||e.code==='Enter')&&!rowButton.disabled){ e.preventDefault(); row(); }});
+    mute.addEventListener('click',()=>{
+      const ctx=ensureAudio(); const off=ctx.state==='running'; off?ctx.suspend():ctx.resume();
+      mute.textContent=off?'Sound off':'Sound on'; mute.setAttribute('aria-pressed',String(off));
+    });
+  </script>
+</body>
+</html>
