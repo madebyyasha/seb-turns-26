@@ -8,12 +8,12 @@
   <title>Seb turns 26</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Cpath d='M29 19h6v24h-6z' fill='%23f7e8c8'/%3E%3Cpath d='M32 8c8 8 6 14 0 16-6-2-8-8 0-16z' fill='%23ff7a25'/%3E%3C/svg%3E" />
   <style>
-    :root{--cream:#fff5dc;--gold:#ffd16a;--ember:#ff5b20;--night:#050810}
+    :root{--cream:#fff5df;--orange:#e86620;--burgundy:#8f1734;--tobacco:#6c3827;--ember:#ff6a22;--night:#090706}
     *{box-sizing:border-box}
     html,body{width:100%;height:100%;margin:0;overflow:hidden}
     body{background:var(--night);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
     button{font:inherit}
-    main{position:relative;width:100%;height:100%;isolation:isolate;background:radial-gradient(circle at 50% 42%,#19233a 0,#0a1221 43%,#03060c 100%)}
+    main{position:relative;width:100%;height:100%;isolation:isolate;background:radial-gradient(circle at 50% 42%,#352019 0,#18100f 40%,#080606 76%)}
     .stars{position:absolute;inset:0;opacity:.42;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.55px);background-size:89px 73px;animation:twinkle 2.8s ease-in-out infinite alternate}
     @keyframes twinkle{to{opacity:.7;transform:translateY(-2px)}}
 
@@ -21,26 +21,36 @@
     h1{margin:0;font-size:clamp(2.5rem,7vw,5.8rem);line-height:.92;letter-spacing:-.05em;font-weight:500;text-wrap:balance}
     .lit .headline{opacity:0;transform:translate(-50%,-18px)}
 
-    .cake-stage{position:absolute;z-index:3;left:50%;top:52%;width:min(46vw,405px);aspect-ratio:1131/1391;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 32px #000c)}
+    .cake-stage{position:absolute;z-index:3;left:50%;top:51%;width:min(42vw,390px);aspect-ratio:2/3;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 32px #000c)}
     .cake-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .3s ease;user-select:none;-webkit-user-drag:none}
-    .cake-lit{opacity:0;filter:drop-shadow(0 0 22px #ffcf6a88)}
+    .cake-lit{opacity:0;filter:drop-shadow(0 0 22px #ff9c4b77)}
     .lit .cake-unlit{opacity:0}
     .lit .cake-lit{opacity:1;animation:candleGlow 1.35s ease-in-out infinite alternate}
-    @keyframes candleGlow{to{filter:drop-shadow(0 0 38px #ffd46fcc)}}
+    @keyframes candleGlow{to{filter:drop-shadow(0 0 42px #ff9d53bb)}}
 
-    .lighter{position:absolute;z-index:8;left:50%;bottom:3.7vh;width:200px;height:66px;transform:translateX(-50%);border:0;background:none;cursor:pointer;touch-action:manipulation;transition:opacity .35s ease,transform .18s ease}
+    .lighter{position:absolute;z-index:8;left:50%;bottom:2.7vh;width:250px;height:82px;transform:translateX(-50%);border:0;background:none;cursor:pointer;touch-action:manipulation;transition:opacity .35s ease,transform .18s ease}
     .lighter:active{transform:translateX(-50%) scale(.95)}
-    .paper{position:absolute;left:17px;top:8px;width:130px;height:14px;border-radius:3px 1px 1px 3px;background:linear-gradient(#fffdf7,#d7d2c6);box-shadow:inset 0 -2px 2px #aaa6;transform:rotate(-3deg)}
-    .filter{position:absolute;right:-1px;top:0;width:39px;height:14px;border-radius:1px 4px 4px 1px;background:repeating-linear-gradient(90deg,#c99550 0 4px,#b77d3d 4px 6px)}
-    .tip{position:absolute;left:-10px;top:-1px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 60% 50%,#fff4ac 0 8%,#ffad25 19%,var(--ember) 48%,#61170a 72%);box-shadow:0 0 10px #ff5a1f,0 0 32px #ff7b25bb;animation:pulse 1.3s ease-in-out infinite alternate}
-    @keyframes pulse{to{transform:scale(1.14);box-shadow:0 0 15px #ff5a1f,0 0 44px #ff9a35dd}}
-    .instruction{position:absolute;left:50%;top:39px;transform:translateX(-50%);width:max-content;color:#d4d1c8;font:700 .76rem/1.2 system-ui,sans-serif;letter-spacing:.13em;text-transform:uppercase}
-    .lighting .lighter,.lit .lighter{opacity:0;pointer-events:none}
+    .cigarette{position:absolute;left:18px;top:20px;width:142px;height:15px;border-radius:3px;background:linear-gradient(#fffdf7,#d7d2c6);box-shadow:inset 0 -2px 2px #aaa6,0 7px 12px #0007;transform:rotate(-3deg)}
+    .filter{position:absolute;right:-1px;top:0;width:40px;height:15px;border-radius:1px 4px 4px 1px;background:repeating-linear-gradient(90deg,#a96840 0 4px,#885033 4px 6px)}
+    .cig-tip{position:absolute;left:-9px;top:0;width:14px;height:14px;border-radius:50%;background:#29201d;transition:background .2s,box-shadow .2s}
+    .cig-lit .cig-tip,.lit .cig-tip{background:radial-gradient(circle at 60% 50%,#fff1a0 0 8%,#ffad25 20%,var(--ember) 49%,#5f160b 74%);box-shadow:0 0 10px #ff5a1f,0 0 28px #ff8f31bb;animation:pulse 1.2s ease-in-out infinite alternate}
+    .cig-smoke{position:absolute;left:-8px;top:-2px;width:22px;height:22px;border:2px solid #e0dfda55;border-color:#e0dfda55 transparent transparent #e0dfda55;border-radius:50%;opacity:0}
+    .cig-lit .cig-smoke,.lit .cig-smoke{animation:smoke 2.2s ease-out infinite}
+    @keyframes pulse{to{transform:scale(1.12);box-shadow:0 0 14px #ff5a1f,0 0 40px #ff9a35dd}}
+    @keyframes smoke{0%{opacity:0;transform:translate(0,0) scale(.35)}20%{opacity:.55}100%{opacity:0;transform:translate(-24px,-48px) scale(1.5) rotate(75deg)}}
+    .chrome-lighter{position:absolute;right:30px;top:7px;width:45px;height:54px;border-radius:6px 6px 9px 9px;background:linear-gradient(110deg,#797979 0,#f4f4f0 28%,#777 55%,#d9d9d4 78%,#555 100%);box-shadow:inset 0 0 0 2px #ffffff55,0 9px 15px #0008}
+    .chrome-lighter::before{content:"";position:absolute;left:8px;top:-10px;width:27px;height:15px;border-radius:4px 4px 2px 2px;background:repeating-linear-gradient(90deg,#555 0 3px,#bbb 3px 5px)}
+    .flame{position:absolute;left:14px;top:-34px;width:17px;height:30px;border-radius:55% 45% 58% 42%;background:radial-gradient(circle at 50% 70%,#fff8b5 0 18%,#ffb12e 42%,#ff5f20 72%,transparent 74%);transform:scale(.1) rotate(8deg);opacity:0;transform-origin:50% 100%}
+    .lighting .flame{animation:lighterFlame .6s ease-out forwards}
+    @keyframes lighterFlame{35%,100%{opacity:1;transform:scale(1) rotate(8deg)}}
+    .instruction{position:absolute;left:50%;top:64px;transform:translateX(-50%);width:max-content;color:#d8cec6;font:700 .76rem/1.2 system-ui,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+    .lighting .lighter{pointer-events:none}
+    .lit .lighter{opacity:0;pointer-events:none}
 
     .ember{position:absolute;z-index:10;left:50%;top:50%;width:13px;height:13px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px #ff5a1f,0 0 34px #ffb436;opacity:0;pointer-events:none}
-    .lighting .ember{animation:lightCandles 1.65s cubic-bezier(.34,.02,.24,1) forwards}
+    .lighting .ember{animation:lightCandles 1.5s .52s cubic-bezier(.34,.02,.24,1) forwards}
     @keyframes lightCandles{
-      0%{opacity:1;transform:translate(-98px,40vh) scale(.75)}
+      0%{opacity:1;transform:translate(68px,39vh) scale(.75)}
       24%{opacity:1;transform:translate(-115px,-10vh) scale(1)}
       49%{opacity:1;transform:translate(100px,-2vh) scale(1.05)}
       73%{opacity:1;transform:translate(-72px,-22vh) scale(.95)}
@@ -49,7 +59,7 @@
     }
 
     .birthday{position:absolute;z-index:7;left:50%;bottom:4.3vh;width:min(94vw,850px);margin:0;transform:translate(-50%,18px);opacity:0;text-align:center;font-size:clamp(3rem,8.6vw,6.6rem);line-height:.88;letter-spacing:-.055em;font-weight:500;text-wrap:balance;text-shadow:0 5px 22px #000}
-    .birthday span{color:#ff7837}
+    .birthday span{color:#ef6b2b}
     .lit .birthday{animation:reveal .8s .18s ease forwards}
     @keyframes reveal{to{opacity:1;transform:translate(-50%,0)}}
 
@@ -61,7 +71,7 @@
 
     @media(max-width:640px){
       .headline{top:3.5vh}
-      .cake-stage{top:49%;width:min(77vw,350px)}
+      .cake-stage{top:48%;width:min(70vw,330px)}
       .lighter{bottom:2.5vh}
       .birthday{bottom:5.6vh;font-size:clamp(2.8rem,14.5vw,4.8rem)}
       .lit .cake-stage{top:43%}
@@ -77,13 +87,14 @@
     </header>
 
     <div class="cake-stage">
-      <img class="cake-unlit" src="assets/seb-cake-unlit.png" alt="A three-tier birthday cake with unlit candles" />
-      <img class="cake-lit" src="assets/seb-cake-lit.png" alt="The same birthday cake with every candle glowing" />
+      <img class="cake-unlit" src="assets/seb-cake-unlit-v2.png" alt="A fun three-tier birthday cake with unlit candles" />
+      <img class="cake-lit" src="assets/seb-cake-lit-v2.png" alt="The same birthday cake with every candle glowing" />
     </div>
 
-    <button id="lighter" class="lighter" type="button" aria-label="Use Seb's cigarette to light the birthday candles">
-      <span class="paper"><span class="filter"></span><span class="tip"></span></span>
-      <span class="instruction">Light it</span>
+    <button id="lighter" class="lighter" type="button" aria-label="Use the lighter for Seb's last cigarette and birthday candles">
+      <span class="cigarette"><span class="filter"></span><span class="cig-tip"></span><span class="cig-smoke"></span></span>
+      <span class="chrome-lighter"><span class="flame"></span></span>
+      <span class="instruction">Flick the lighter</span>
     </button>
     <span class="ember" aria-hidden="true"></span>
 
@@ -109,12 +120,13 @@
       song.forEach(([f,b],i)=>{const d=b*beat*.94;tone(f,t,d,.068,'triangle',-5);tone(f,t,d,.052,'triangle',5);tone(f/2,t,d,.024,'sine');if(chords.has(i))chords.get(i).forEach((cf,j)=>tone(cf,t,beat*2.8,j===0?.016:.01,'sawtooth'));t+=b*beat})
     }
     function launchConfetti(){
-      const box=document.querySelector('#confetti'),colors=['#ff6a22','#ffd56a','#fff4d6','#2ca9e1','#ef5b83'];
+      const box=document.querySelector('#confetti'),colors=['#e86620','#9f1737','#fff4dc','#b8b8b3','#6c3827'];
       for(let i=0;i<72;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.setProperty('--c',colors[i%colors.length]);p.style.setProperty('--d',(3+Math.random()*2.7)+'s');p.style.setProperty('--delay',(-Math.random()*3)+'s');p.style.setProperty('--drift',(-75+Math.random()*150)+'px');box.appendChild(p)}
     }
     lighter.addEventListener('click',()=>{
       ensureAudio();lighter.disabled=true;stage.classList.add('lighting');
-      setTimeout(()=>{stage.classList.remove('lighting');stage.classList.add('lit');launchConfetti();playHappyBirthday()},1510)
+      setTimeout(()=>stage.classList.add('cig-lit'),430);
+      setTimeout(()=>{stage.classList.remove('lighting');stage.classList.add('lit');launchConfetti();playHappyBirthday()},1960)
     });
     mute.addEventListener('click',()=>{const ctx=ensureAudio(),off=ctx.state==='running';off?ctx.suspend():ctx.resume();mute.textContent=off?'Sound off':'Sound on';mute.setAttribute('aria-pressed',String(off))});
   </script>
