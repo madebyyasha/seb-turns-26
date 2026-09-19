@@ -3,147 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#030507" />
-  <meta name="description" content="A small birthday moment for Seb." />
+  <meta name="theme-color" content="#050810" />
+  <meta name="description" content="Light the candles for Seb's 26th birthday." />
   <title>Seb turns 26</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030507'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23ff6a22'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23ffd56a' stroke-opacity='.45' stroke-width='4'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Cpath d='M29 19h6v24h-6z' fill='%23f7e8c8'/%3E%3Cpath d='M32 8c8 8 6 14 0 16-6-2-8-8 0-16z' fill='%23ff7a25'/%3E%3C/svg%3E" />
   <style>
-    :root { --ink:#030507; --cream:#fff6dc; --gold:#ffd170; --ember:#ff5a1f; }
-    * { box-sizing:border-box; }
-    html,body { width:100%; height:100%; margin:0; overflow:hidden; }
-    body { background:var(--ink); color:var(--cream); font-family:Georgia,'Times New Roman',serif; }
-    button { font:inherit; }
-    .scene { position:absolute; inset:0; display:grid; place-items:center; transition:opacity 1.05s ease,transform 1.05s ease; }
-    .hidden { opacity:0; pointer-events:none; transform:scale(1.025); }
+    :root{--cream:#fff5dc;--gold:#ffd16a;--ember:#ff5b20;--night:#050810}
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{background:var(--night);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
+    button{font:inherit}
+    main{position:relative;width:100%;height:100%;isolation:isolate;background:radial-gradient(circle at 50% 42%,#19233a 0,#0a1221 43%,#03060c 100%)}
+    .stars{position:absolute;inset:0;opacity:.42;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.55px);background-size:89px 73px;animation:twinkle 2.8s ease-in-out infinite alternate}
+    @keyframes twinkle{to{opacity:.7;transform:translateY(-2px)}}
 
-    #opening { background:radial-gradient(circle at 50% 54%,#11100f 0,#060708 34%,#020304 72%); }
-    .opening-wrap { position:relative; z-index:2; display:grid; justify-items:center; gap:2rem; width:min(90vw,680px); text-align:center; }
-    .date { margin:0; color:#bea96e; font:700 .72rem/1.2 system-ui,sans-serif; letter-spacing:.24em; text-transform:uppercase; }
-    h1 { margin:.55rem 0 0; font-size:clamp(2.35rem,7vw,5.5rem); line-height:.96; letter-spacing:-.045em; font-weight:500; text-wrap:balance; }
-    .cigarette { position:relative; width:172px; height:62px; border:0; background:none; cursor:pointer; touch-action:manipulation; filter:drop-shadow(0 10px 20px #000); }
-    .paper { position:absolute; left:18px; top:25px; width:116px; height:13px; border-radius:3px 1px 1px 3px; background:linear-gradient(#fffdf6,#d9d4c7); box-shadow:inset 0 -2px 2px #aaa6; transform:rotate(-4deg); }
-    .filter { position:absolute; right:-1px; top:0; width:36px; height:13px; border-radius:1px 4px 4px 1px; background:repeating-linear-gradient(90deg,#c89651 0 4px,#b9803f 4px 6px); }
-    .tip { position:absolute; left:-10px; top:-1px; width:15px; height:15px; border-radius:50%; background:radial-gradient(circle at 60% 50%,#fff1a1 0 8%,#ffb02d 18%,var(--ember) 46%,#61170a 72%); box-shadow:0 0 9px #ff5a1f,0 0 30px #ff7b25aa; animation:pulse 1.4s ease-in-out infinite alternate; }
-    .smoke { position:absolute; left:4px; top:5px; width:25px; height:25px; border:2px solid #d9e0df55; border-color:#d9e0df55 transparent transparent #d9e0df55; border-radius:50%; animation:smoke 2.6s ease-out infinite; }
-    .smoke.two { animation-delay:1.25s; }
-    @keyframes pulse { to { transform:scale(1.14); box-shadow:0 0 14px #ff5a1f,0 0 44px #ff7b25dd; } }
-    @keyframes smoke { 0%{ opacity:0; transform:translate(0,0) scale(.35) rotate(0); } 20%{opacity:.65;} 100%{opacity:0;transform:translate(-30px,-58px) scale(1.7) rotate(85deg);} }
-    .prompt { margin:0; color:#c9c8c1; font:600 .82rem/1.4 system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+    .headline{position:absolute;z-index:6;top:4.5vh;left:50%;width:min(92vw,760px);transform:translateX(-50%);text-align:center;transition:opacity .65s ease,transform .65s ease}
+    h1{margin:0;font-size:clamp(2.5rem,7vw,5.8rem);line-height:.92;letter-spacing:-.05em;font-weight:500;text-wrap:balance}
+    .lit .headline{opacity:0;transform:translate(-50%,-18px)}
 
-    .flying-ember { position:fixed; z-index:20; left:50%; top:54%; width:14px; height:14px; border-radius:50%; background:var(--ember); box-shadow:0 0 12px #ff5a1f,0 0 40px #ffb32dcc; opacity:0; pointer-events:none; }
-    .ember-live { animation:emberFlight 1.45s cubic-bezier(.34,.02,.22,1) forwards; }
-    @keyframes emberFlight {
-      0% { opacity:1; transform:translate(-92px,7px) scale(.65); }
-      35% { opacity:1; transform:translate(-10px,-18vh) scale(1.15); }
-      72% { opacity:1; transform:translate(54px,-29vh) scale(.85); }
-      100% { opacity:0; transform:translate(0,-14vh) scale(2.3); }
+    .cake-stage{position:absolute;z-index:3;left:50%;top:52%;width:min(46vw,405px);aspect-ratio:1131/1391;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 32px #000c)}
+    .cake-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .3s ease;user-select:none;-webkit-user-drag:none}
+    .cake-lit{opacity:0;filter:drop-shadow(0 0 22px #ffcf6a88)}
+    .lit .cake-unlit{opacity:0}
+    .lit .cake-lit{opacity:1;animation:candleGlow 1.35s ease-in-out infinite alternate}
+    @keyframes candleGlow{to{filter:drop-shadow(0 0 38px #ffd46fcc)}}
+
+    .lighter{position:absolute;z-index:8;left:50%;bottom:3.7vh;width:200px;height:66px;transform:translateX(-50%);border:0;background:none;cursor:pointer;touch-action:manipulation;transition:opacity .35s ease,transform .18s ease}
+    .lighter:active{transform:translateX(-50%) scale(.95)}
+    .paper{position:absolute;left:17px;top:8px;width:130px;height:14px;border-radius:3px 1px 1px 3px;background:linear-gradient(#fffdf7,#d7d2c6);box-shadow:inset 0 -2px 2px #aaa6;transform:rotate(-3deg)}
+    .filter{position:absolute;right:-1px;top:0;width:39px;height:14px;border-radius:1px 4px 4px 1px;background:repeating-linear-gradient(90deg,#c99550 0 4px,#b77d3d 4px 6px)}
+    .tip{position:absolute;left:-10px;top:-1px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 60% 50%,#fff4ac 0 8%,#ffad25 19%,var(--ember) 48%,#61170a 72%);box-shadow:0 0 10px #ff5a1f,0 0 32px #ff7b25bb;animation:pulse 1.3s ease-in-out infinite alternate}
+    @keyframes pulse{to{transform:scale(1.14);box-shadow:0 0 15px #ff5a1f,0 0 44px #ff9a35dd}}
+    .instruction{position:absolute;left:50%;top:39px;transform:translateX(-50%);width:max-content;color:#d4d1c8;font:700 .76rem/1.2 system-ui,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+    .lighting .lighter,.lit .lighter{opacity:0;pointer-events:none}
+
+    .ember{position:absolute;z-index:10;left:50%;top:50%;width:13px;height:13px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px #ff5a1f,0 0 34px #ffb436;opacity:0;pointer-events:none}
+    .lighting .ember{animation:lightCandles 1.65s cubic-bezier(.34,.02,.24,1) forwards}
+    @keyframes lightCandles{
+      0%{opacity:1;transform:translate(-98px,40vh) scale(.75)}
+      24%{opacity:1;transform:translate(-115px,-10vh) scale(1)}
+      49%{opacity:1;transform:translate(100px,-2vh) scale(1.05)}
+      73%{opacity:1;transform:translate(-72px,-22vh) scale(.95)}
+      94%{opacity:1;transform:translate(85px,-28vh) scale(1.15)}
+      100%{opacity:0;transform:translate(0,-31vh) scale(2)}
     }
 
-    #finale { background:radial-gradient(circle at 50% 42%,#25385b 0,#0a1628 42%,#02060d 100%); text-align:center; }
-    .stars { position:absolute; inset:0; opacity:.52; background-image:radial-gradient(circle,#fff 0 1px,transparent 1.6px); background-size:83px 71px; animation:twinkle 2.5s ease-in-out infinite alternate; }
-    @keyframes twinkle { to { opacity:.8; transform:translateY(-2px); } }
-    .final-wrap { position:relative; z-index:3; display:grid; justify-items:center; padding:1rem; }
-    .cake { width:min(48vw,390px); margin:0 auto -1.2rem; opacity:0; transform:translateY(35px) scale(.82); filter:drop-shadow(0 22px 30px #000c) drop-shadow(0 0 24px #ffc65b44); }
-    .cake img { display:block; width:100%; height:auto; }
-    .finale-live .cake { animation:cakeIn 1s .18s cubic-bezier(.18,1.18,.34,1) forwards,candleGlow 1.6s 1.2s ease-in-out infinite alternate; }
-    @keyframes cakeIn { to { opacity:1; transform:none; } }
-    @keyframes candleGlow { to { filter:drop-shadow(0 22px 30px #000c) drop-shadow(0 0 42px #ffd46faa); } }
-    .birthday { margin:0; font-size:clamp(3rem,9vw,6.7rem); line-height:.88; letter-spacing:-.055em; font-weight:500; opacity:0; transform:translateY(15px); text-wrap:balance; text-shadow:0 4px 22px #000; }
-    .birthday span { color:#ff7636; }
-    .finale-live .birthday { animation:reveal .8s .42s ease forwards; }
-    @keyframes reveal { to { opacity:1; transform:none; } }
-    .confetti { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-    .confetti i { position:absolute; top:-12vh; width:8px; height:16px; background:var(--c); animation:fall var(--d) var(--delay) linear infinite; }
-    @keyframes fall { to { transform:translate3d(var(--drift),115vh,0) rotate(760deg); } }
-    .mute { position:absolute; z-index:8; right:1rem; bottom:1rem; border:1px solid #ffffff48; border-radius:999px; padding:.62rem .85rem; color:#fff; background:#030507b8; font:700 .78rem system-ui,sans-serif; cursor:pointer; }
+    .birthday{position:absolute;z-index:7;left:50%;bottom:4.3vh;width:min(94vw,850px);margin:0;transform:translate(-50%,18px);opacity:0;text-align:center;font-size:clamp(3rem,8.6vw,6.6rem);line-height:.88;letter-spacing:-.055em;font-weight:500;text-wrap:balance;text-shadow:0 5px 22px #000}
+    .birthday span{color:#ff7837}
+    .lit .birthday{animation:reveal .8s .18s ease forwards}
+    @keyframes reveal{to{opacity:1;transform:translate(-50%,0)}}
+
+    .confetti{position:absolute;z-index:5;inset:0;overflow:hidden;pointer-events:none}
+    .confetti i{position:absolute;top:-12vh;width:8px;height:16px;background:var(--c);animation:fall var(--d) var(--delay) linear infinite}
+    @keyframes fall{to{transform:translate3d(var(--drift),115vh,0) rotate(760deg)}}
+    .mute{position:absolute;z-index:12;right:1rem;bottom:1rem;border:1px solid #ffffff44;border-radius:999px;padding:.62rem .84rem;color:#fff;background:#030507b8;font:700 .78rem system-ui,sans-serif;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s 1s}
+    .lit .mute{opacity:1;pointer-events:auto}
+
     @media(max-width:640px){
-      .opening-wrap { gap:1.65rem; }
-      .cake { width:min(78vw,330px); margin-bottom:-.5rem; }
-      .birthday { font-size:clamp(3rem,15vw,5rem); }
+      .headline{top:3.5vh}
+      .cake-stage{top:49%;width:min(77vw,350px)}
+      .lighter{bottom:2.5vh}
+      .birthday{bottom:5.6vh;font-size:clamp(2.8rem,14.5vw,4.8rem)}
+      .lit .cake-stage{top:43%}
     }
-    @media(prefers-reduced-motion:reduce){ *,*::before,*::after{ animation-duration:.01ms!important; animation-iteration-count:1!important; } }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
   </style>
 </head>
 <body>
-  <main>
-    <section id="opening" class="scene">
-      <div class="opening-wrap">
-        <div>
-          <p class="date">24 September 2000</p>
-          <h1>One last cigarette<br>before 26.</h1>
-        </div>
-        <button id="light" class="cigarette" type="button" aria-label="Tap the glowing cigarette">
-          <span class="paper"><span class="filter"></span><span class="tip"></span></span>
-          <span class="smoke"></span><span class="smoke two"></span>
-        </button>
-        <p class="prompt">Tap the ember</p>
-      </div>
-    </section>
+  <main id="stage">
+    <div class="stars"></div>
+    <header class="headline">
+      <h1>One last ciggie<br>before 26.</h1>
+    </header>
 
-    <div id="ember" class="flying-ember" aria-hidden="true"></div>
+    <div class="cake-stage">
+      <img class="cake-unlit" src="assets/seb-cake-unlit.png" alt="A three-tier birthday cake with unlit candles" />
+      <img class="cake-lit" src="assets/seb-cake-lit.png" alt="The same birthday cake with every candle glowing" />
+    </div>
 
-    <section id="finale" class="scene hidden" aria-label="Happy Birthday Seb">
-      <div class="stars"></div>
-      <div id="confetti" class="confetti" aria-hidden="true"></div>
-      <div class="final-wrap">
-        <div class="cake"><img src="assets/seb-cake.png" alt="A three-tier birthday cake glowing with candles" /></div>
-        <h2 class="birthday">Happy Birthday,<br><span>Seb.</span></h2>
-      </div>
-      <button id="mute" class="mute" type="button" aria-pressed="false">Sound on</button>
-    </section>
+    <button id="lighter" class="lighter" type="button" aria-label="Use Seb's cigarette to light the birthday candles">
+      <span class="paper"><span class="filter"></span><span class="tip"></span></span>
+      <span class="instruction">Light it</span>
+    </button>
+    <span class="ember" aria-hidden="true"></span>
+
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+    <h2 class="birthday">Happy Birthday, <span>Seb.</span></h2>
+    <button id="mute" class="mute" type="button" aria-pressed="false">Sound on</button>
   </main>
 
   <script>
     let audioCtx;
-    const opening=document.querySelector('#opening');
-    const finale=document.querySelector('#finale');
-    const ember=document.querySelector('#ember');
-    const light=document.querySelector('#light');
-    const mute=document.querySelector('#mute');
-
-    function ensureAudio(){
-      audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
-      if(audioCtx.state==='suspended') audioCtx.resume();
-      return audioCtx;
-    }
+    const stage=document.querySelector('#stage'),lighter=document.querySelector('#lighter'),mute=document.querySelector('#mute');
+    function ensureAudio(){audioCtx||=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}
     function tone(freq,start,duration,volume,type='triangle',detune=0){
       const ctx=ensureAudio(),osc=ctx.createOscillator(),gain=ctx.createGain(),filter=ctx.createBiquadFilter();
-      osc.type=type; osc.frequency.value=freq; osc.detune.value=detune;
-      filter.type='lowpass'; filter.frequency.value=type==='sawtooth'?1400:3400;
-      gain.gain.setValueAtTime(.0001,start); gain.gain.exponentialRampToValueAtTime(volume,start+.045); gain.gain.setValueAtTime(volume*.78,Math.max(start+.06,start+duration-.12)); gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
-      osc.connect(filter).connect(gain).connect(ctx.destination); osc.start(start); osc.stop(start+duration+.04);
+      osc.type=type;osc.frequency.value=freq;osc.detune.value=detune;filter.type='lowpass';filter.frequency.value=type==='sawtooth'?1400:3400;
+      gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.045);gain.gain.setValueAtTime(volume*.78,Math.max(start+.06,start+duration-.12));gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+      osc.connect(filter).connect(gain).connect(ctx.destination);osc.start(start);osc.stop(start+duration+.04)
     }
     function playHappyBirthday(){
-      const ctx=ensureAudio(),start=ctx.currentTime+.12,beat=.34;
-      const G=392,A=440,B=493.88,C=523.25,D=587.33,E=659.25,F=698.46,G5=783.99;
+      const ctx=ensureAudio(),start=ctx.currentTime+.12,beat=.34,G=392,A=440,B=493.88,C=523.25,D=587.33,E=659.25,F=698.46,G5=783.99;
       const song=[[G,.5],[G,.5],[A,1],[G,1],[C,1],[B,2],[G,.5],[G,.5],[A,1],[G,1],[D,1],[C,2],[G,.5],[G,.5],[G5,1],[E,1],[C,1],[B,1],[A,2],[F,.5],[F,.5],[E,1],[C,1],[D,1],[C,2]];
-      const phraseStarts=new Map([[0,[261.63,329.63,392]],[6,[196,246.94,392]],[12,[261.63,329.63,392]],[19,[174.61,220,349.23]]]);
-      let t=start;
-      song.forEach(([f,b],i)=>{
-        const duration=b*beat*.94;
-        tone(f,t,duration,.068,'triangle',-5); tone(f,t,duration,.052,'triangle',5); tone(f/2,t,duration,.024,'sine');
-        if(phraseStarts.has(i)) phraseStarts.get(i).forEach((cf,j)=>tone(cf,t,beat*2.8,j===0?.016:.01,'sawtooth'));
-        t+=b*beat;
-      });
+      const chords=new Map([[0,[261.63,329.63,392]],[6,[196,246.94,392]],[12,[261.63,329.63,392]],[19,[174.61,220,349.23]]]);let t=start;
+      song.forEach(([f,b],i)=>{const d=b*beat*.94;tone(f,t,d,.068,'triangle',-5);tone(f,t,d,.052,'triangle',5);tone(f/2,t,d,.024,'sine');if(chords.has(i))chords.get(i).forEach((cf,j)=>tone(cf,t,beat*2.8,j===0?.016:.01,'sawtooth'));t+=b*beat})
     }
-    function confetti(){
+    function launchConfetti(){
       const box=document.querySelector('#confetti'),colors=['#ff6a22','#ffd56a','#fff4d6','#2ca9e1','#ef5b83'];
-      for(let i=0;i<72;i++){
-        const p=document.createElement('i'); p.style.left=Math.random()*100+'%'; p.style.setProperty('--c',colors[i%colors.length]);
-        p.style.setProperty('--d',(3+Math.random()*2.7)+'s'); p.style.setProperty('--delay',(-Math.random()*3)+'s'); p.style.setProperty('--drift',(-75+Math.random()*150)+'px'); box.appendChild(p);
-      }
+      for(let i=0;i<72;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.setProperty('--c',colors[i%colors.length]);p.style.setProperty('--d',(3+Math.random()*2.7)+'s');p.style.setProperty('--delay',(-Math.random()*3)+'s');p.style.setProperty('--drift',(-75+Math.random()*150)+'px');box.appendChild(p)}
     }
-    light.addEventListener('click',()=>{
-      ensureAudio(); light.disabled=true; ember.classList.add('ember-live');
-      setTimeout(()=>{
-        opening.classList.add('hidden'); finale.classList.remove('hidden'); finale.classList.add('finale-live');
-        confetti(); playHappyBirthday();
-      },1120);
+    lighter.addEventListener('click',()=>{
+      ensureAudio();lighter.disabled=true;stage.classList.add('lighting');
+      setTimeout(()=>{stage.classList.remove('lighting');stage.classList.add('lit');launchConfetti();playHappyBirthday()},1510)
     });
-    mute.addEventListener('click',()=>{
-      const ctx=ensureAudio(),off=ctx.state==='running'; off?ctx.suspend():ctx.resume();
-      mute.textContent=off?'Sound off':'Sound on'; mute.setAttribute('aria-pressed',String(off));
-    });
+    mute.addEventListener('click',()=>{const ctx=ensureAudio(),off=ctx.state==='running';off?ctx.suspend():ctx.resume();mute.textContent=off?'Sound off':'Sound on';mute.setAttribute('aria-pressed',String(off))});
   </script>
 </body>
 </html>
