@@ -13,15 +13,19 @@
     html,body{width:100%;height:100%;min-height:100dvh;margin:0;overflow:hidden}
     body{background:var(--night);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
     button{font:inherit}
-    main{position:relative;width:100%;height:100%;min-height:100dvh;isolation:isolate;background:radial-gradient(circle at 50% 42%,#352019 0,#18100f 40%,#080606 76%)}
+    main{position:relative;width:100%;height:100%;min-height:100dvh;isolation:isolate;background:radial-gradient(circle at 54% 33%,#26333a 0,#111b21 38%,#05080b 78%)}
     .stars{position:absolute;inset:0;opacity:.42;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.55px);background-size:89px 73px;animation:twinkle 2.8s ease-in-out infinite alternate}
     @keyframes twinkle{to{opacity:.7;transform:translateY(-2px)}}
+    .water{position:absolute;z-index:1;left:0;right:0;bottom:0;height:42%;opacity:.78;background:repeating-radial-gradient(ellipse at 50% 0,#26556a55 0 2px,#07151c 3px 14px);mask-image:linear-gradient(transparent,#000 28%);animation:waterMove 5s linear infinite}
+    @keyframes waterMove{to{background-position:110px 18px}}
 
     .headline{position:absolute;z-index:6;top:4.5vh;left:50%;width:min(92vw,760px);transform:translateX(-50%);text-align:center;transition:opacity .65s ease,transform .65s ease}
     h1{margin:0;font-size:clamp(2.5rem,7vw,5.8rem);line-height:.92;letter-spacing:-.05em;font-weight:500;text-wrap:balance}
-    .lit .headline{opacity:0;transform:translate(-50%,-18px)}
+    .arrived .headline,.lit .headline{opacity:0;transform:translate(-50%,-18px)}
 
-    .rower{position:absolute;z-index:6;left:-7vw;bottom:5vh;width:min(48vw,620px);padding:0;border:0;background:none;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 16px 20px #000b);transform-origin:50% 65%}
+    .island{position:absolute;z-index:2;left:57%;bottom:2.5vh;width:min(82vw,980px);transform:translateX(-50%);filter:drop-shadow(0 24px 32px #000b);pointer-events:none;user-select:none;-webkit-user-drag:none}
+
+    .rower{position:absolute;z-index:6;left:-12vw;bottom:3vh;width:min(46vw,600px);padding:0;border:0;background:none;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 16px 20px #000b);transform-origin:50% 65%}
     .rower img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
     .rower-prompt{position:absolute;left:50%;top:-1.2rem;transform:translateX(-50%);width:max-content;padding:.55rem .8rem;border:1px solid #ffffff3b;border-radius:999px;color:#fff5df;background:#160d0bcf;font:700 .76rem/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 24px #0008}
     .rower:hover{transform:rotate(-1deg) translateY(-3px)}
@@ -33,10 +37,17 @@
       38%{transform:translateX(22vw) translateY(3px) rotate(2deg)}
       58%{transform:translateX(33vw) translateY(-8px) rotate(-2deg)}
       78%{transform:translateX(44vw) translateY(2px) rotate(1deg);opacity:1}
-      100%{transform:translateX(54vw) translateY(-3px) rotate(0);opacity:0}
+      100%{transform:translateX(59vw) translateY(-3px) rotate(0);opacity:0}
     }
 
-    .cake-stage{position:absolute;z-index:3;left:50%;top:51%;width:min(42vw,390px);aspect-ratio:2/3;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 32px #000c)}
+    .cake-stage{position:absolute;z-index:4;left:55%;top:48%;width:min(49vw,470px);aspect-ratio:2/3;opacity:0;transform:translate(-50%,-50%) scale(.04);transform-origin:50% 92%;filter:drop-shadow(0 22px 32px #000c)}
+    .arrived .cake-stage{animation:cakeBurst .72s cubic-bezier(.16,1.28,.3,1) forwards}
+    @keyframes cakeBurst{
+      0%{opacity:0;transform:translate(-50%,-50%) scale(.04) rotate(-5deg)}
+      58%{opacity:1;transform:translate(-50%,-50%) scale(1.14) rotate(2deg)}
+      78%{transform:translate(-50%,-50%) scale(.96) rotate(-1deg)}
+      100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
+    }
     .cake-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .3s ease;user-select:none;-webkit-user-drag:none}
     .cake-lit{opacity:0;filter:drop-shadow(0 0 22px #ff9c4b77)}
     .lit .cake-unlit{opacity:0}
@@ -76,8 +87,9 @@
 
     @media(max-width:640px){
       .headline{top:3.5vh}
-      .cake-stage{top:42%;width:min(68vw,38dvh,310px)}
-      .rower{left:-26vw;bottom:10vh;width:min(94vw,460px)}
+      .island{left:58%;bottom:6vh;width:126vw;max-width:none}
+      .cake-stage{left:55%;top:43%;width:min(82vw,42dvh,350px)}
+      .rower{left:-38vw;bottom:8vh;width:min(104vw,500px)}
       .rower-prompt{top:-.65rem}
       .lighter{bottom:max(2.2vh,env(safe-area-inset-bottom));transform:translateX(-50%) scale(.9)}
       .lighting .chrome-lighter{animation-name:lighterJourneyMobile}
@@ -89,7 +101,7 @@
         40%{transform:translateX(32vw) translateY(3px) rotate(2deg)}
         60%{transform:translateX(48vw) translateY(-7px) rotate(-2deg)}
         80%{transform:translateX(64vw) translateY(2px) rotate(1deg);opacity:1}
-        100%{transform:translateX(82vw) translateY(-3px) rotate(0);opacity:0}
+        100%{transform:translateX(96vw) translateY(-3px) rotate(0);opacity:0}
       }
       @keyframes lighterJourneyMobile{
         0%{transform:translate(0,0) rotate(0)}
@@ -104,7 +116,8 @@
     @media(max-width:640px) and (max-height:650px){
       .headline{top:2.2vh}
       h1{font-size:clamp(2rem,10vw,3rem)}
-      .cake-stage{top:45%;width:min(62vw,34dvh)}
+      .island{bottom:3vh}
+      .cake-stage{top:43%;width:min(66vw,38dvh)}
       .birthday{bottom:4vh;font-size:clamp(2.4rem,12vw,3.7rem)}
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
@@ -113,6 +126,7 @@
 <body>
   <main id="stage">
     <div class="stars"></div>
+    <div class="water" aria-hidden="true"></div>
     <header class="headline">
       <h1>Row, Seb.<br>Row.</h1>
     </header>
@@ -121,6 +135,8 @@
       <img src="assets/seb-rowing-v2.png" alt="Seb rowing toward his birthday cake" />
       <span class="rower-prompt">Tap Seb to row</span>
     </button>
+
+    <img class="island" src="assets/seb-island.png" alt="A small moonlit island waiting for Seb" />
 
     <div class="cake-stage">
       <img class="cake-unlit" src="assets/seb-cake-unlit-v3.png" alt="A three-tier birthday cake with unlit candles on every tier" />
@@ -182,8 +198,9 @@
     }
     rower.addEventListener('click',()=>{
       ensureAudio();rower.disabled=true;stage.classList.add('rowing');
-      setTimeout(()=>stage.classList.add('arrived','lighting'),2350);
-      setTimeout(()=>{stage.classList.remove('lighting');stage.classList.add('lit');launchConfetti();playHappyBirthday()},4640)
+      setTimeout(()=>stage.classList.add('arrived'),2350);
+      setTimeout(()=>stage.classList.add('lighting'),3100);
+      setTimeout(()=>{stage.classList.remove('lighting');stage.classList.add('lit');launchConfetti();playHappyBirthday()},5390)
     });
     mute.addEventListener('click',()=>{const ctx=ensureAudio(),off=ctx.state==='running';off?ctx.suspend():ctx.resume();mute.textContent=off?'Sound off':'Sound on';mute.setAttribute('aria-pressed',String(off))});
   </script>
